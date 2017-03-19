@@ -18,6 +18,8 @@ type Probe struct {
         Command string
         Args []string
 	wg sync.WaitGroup
+	stderrChannel chan string
+	resultChannel chan *Result
 }
 
 type Result struct {
@@ -36,10 +38,10 @@ func (r *Result) String () (string) {
 		           r.Received, r.Loss)
 }
 
-func (probe *Probe) reader(p io.ReadCloser, out chan string) {
+func (probe *Probe) reader(p io.ReadCloser) {
 	probe.wg.Add(1)
         defer probe.wg.Done()
-	defer close(out)
+	//defer close(probe.stderrChannel)
 
         var line string
         var err error
@@ -55,20 +57,20 @@ func (probe *Probe) reader(p io.ReadCloser, out chan string) {
                         return
                 }
                 // fmt.Printf("%s", line)
-                out <- line
+                probe.stderrChannel <- line
         }
 }
 
-func (probe *Probe)parser(in chan string, out chan *Result) {
+func (probe *Probe)parser() {
 	probe.wg.Add(1)
 	defer probe.wg.Done()
-	defer close(out)
+	defer close(probe.resultChannel)
 	var line string
 	var ok bool
 	var err error
 	var result *Result
 	for {
-		line, ok = <- in
+		line, ok = <- probe.stderrChannel
 		if !ok {
 			fmt.Print("Failed to read from channel\n")
 			return
@@ -130,18 +132,18 @@ func (probe *Probe)parser(in chan string, out chan *Result) {
 			fmt.Printf("Got invalid amount of parts from line %s\n", line)
 			continue
 		}
-		out <- result
+		probe.resultChannel <- result
 		result = nil
 	}
 }
 
-func (probe *Probe) reporter(in chan *Result) {
+func (probe *Probe) reporter() {
 	probe.wg.Add(1)
 	defer probe.wg.Done()
 	var result *Result
 	var ok bool
 	for {
-		result, ok = <- in
+		result, ok = <- probe.resultChannel
 		if !ok {
 			fmt.Print("Failed to read from channel\n")
 			return
@@ -167,21 +169,21 @@ func (probe *Probe) Execute() {
                 return
         }
 
-        //stdoutChannel := make(chan string, 10)
-        stderrChannel := make(chan string, 10)
-	resultChannel := make(chan *Result, 100)
-
-
-        //go reader(stdout, &wg, stdoutChannel)
-        go probe.reader(stderr, stderrChannel)
-
-	//go parser(stdoutChannel, &wg)
-	go probe.parser(stderrChannel, resultChannel)
-
-	go probe.reporter(resultChannel)
+        go probe.reader(stderr)
 
         err = cmd.Wait()
         fmt.Printf("Command exited with error %v\n", err)
-        probe.wg.Wait()
+
 }
 
+func (probe *Probe) Run() {
+	probe.stderrChannel = make(chan string, 10)
+	probe.resultChannel = make(chan *Result, 100)
+	go probe.parser()
+
+	go probe.reporter()
+	for {
+		probe.Execute()
+	}
+	probe.wg.Wait()
+}

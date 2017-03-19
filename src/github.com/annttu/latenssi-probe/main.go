@@ -12,9 +12,6 @@ func main() {
 		Command: "/usr/local/bin/fping",
 		Args: []string{"-Q", "1", "-c", "10", "8.8.8.8", "8.8.4.4" ,"1.2.3.4"},
 	}
-	for {
-
-		p.Execute()
-	}
+	p.Run()
 
 }
