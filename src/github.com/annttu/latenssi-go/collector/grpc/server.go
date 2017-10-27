@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"golang.org/x/net/context"
-	pb "github.com/annttu/latenssi/proto"
+	pb "github.com/annttu/latenssi-go/proto"
 	"net"
 	"log"
 	"google.golang.org/grpc/reflection"

@@ -4,7 +4,7 @@ import (
 	"strings"
 	"strconv"
 	"fmt"
-	"github.com/annttu/latenssi/probe/result"
+	"github.com/annttu/latenssi-go/probe/result"
 	"time"
 )
 

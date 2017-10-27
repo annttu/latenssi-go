@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/annttu/latenssi/probe/probe"
+	"github.com/annttu/latenssi-go/probe/probe"
 	"sync"
-	"github.com/annttu/latenssi/probe/grpc"
-	"github.com/annttu/latenssi/probe/config"
+	"github.com/annttu/latenssi-go/probe/grpc"
+	"github.com/annttu/latenssi-go/probe/config"
 	"flag"
 	"log"
 	"fmt"

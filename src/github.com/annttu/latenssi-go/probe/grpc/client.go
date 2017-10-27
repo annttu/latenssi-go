@@ -3,9 +3,9 @@ package grpc
 import (
 	"log"
 	"google.golang.org/grpc"
-	pb "github.com/annttu/latenssi/proto"
+	pb "github.com/annttu/latenssi-go/proto"
 	"golang.org/x/net/context"
-	"github.com/annttu/latenssi/probe/result"
+	"github.com/annttu/latenssi-go/probe/result"
 	"fmt"
 	"os"
 )

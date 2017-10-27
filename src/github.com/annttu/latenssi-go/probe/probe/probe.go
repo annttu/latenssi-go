@@ -10,8 +10,8 @@ import (
 	"sync"
 	"bufio"
 	"strings"
-	"github.com/annttu/latenssi/probe/result"
-	"github.com/annttu/latenssi/probe/grpc"
+	"github.com/annttu/latenssi-go/probe/result"
+	"github.com/annttu/latenssi-go/probe/grpc"
 )
 
 
