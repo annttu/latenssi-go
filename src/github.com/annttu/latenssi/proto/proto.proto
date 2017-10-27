@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.annttu.probe";
+option java_outer_classname = "proto";
+
+package proto;
+
+
+message ResultInt64 {
+  string key = 1;
+  int64 value = 2;
+}
+
+message ResultFloat {
+  string key = 1;
+  double value = 2;
+}
+
+message ResultRow {
+  oneof result {
+     ResultFloat floatresult = 1;
+     ResultInt64 intresult = 2;
+  }
+}
+
+message Results {
+  string source = 1;
+  string host = 2;
+  string probe = 3;
+  uint64 time = 4;
+  repeated ResultRow resultrows = 5;
+
+}
+
+enum ResultStatus {
+  RESULT_OK = 0;
+  RESULT_FAILED = 1;
+}
+
+message ResultResponse {
+  ResultStatus status = 1;
+  string message = 2;
+}
+
+service ResultService {
+  rpc SendResults (Results) returns (ResultResponse) {}
+}

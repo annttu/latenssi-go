@@ -1,5 +1,10 @@
 !src/
 src/*
 !src/github.com/annttu/latenssi-probe
+!src/github.com/annttu/latenssi/probe/*
+!src/github.com/annttu/latenssi
+!src/github.com/annttu
+!src/github.com
+src/github.com/annttu/latenssi/proto/proto.pb.go
 bin/
 pkg/
