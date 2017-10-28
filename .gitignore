@@ -8,3 +8,10 @@ src/*
 src/github.com/annttu/latenssi/proto/proto.pb.go
 bin/
 pkg/
+*.yaml
+src/github.com/golang/
+src/github.com/influxdata/
+src/github.com/jessevdk/
+src/github.com/op/
+
+

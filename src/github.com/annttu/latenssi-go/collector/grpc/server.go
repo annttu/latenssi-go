@@ -7,12 +7,12 @@ import (
 	"log"
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc"
+	"github.com/annttu/latenssi-go/collector/destination"
 )
 
 const (
 	listenAddress = ":50051"
 )
-
 
 type collector struct{}
 
@@ -21,6 +21,14 @@ func (s *collector) SendResults(ctx context.Context, res *pb.Results) (*pb.Resul
 	for _, r := range res.Resultrows {
 		log.Printf("%s: %s: %s: %v", res.Source, res.Host, res.Probe, r.GetResult())
 	}
+
+	for _, d := range destination.Destinations {
+		err := d.Write(res)
+		if err != nil {
+			log.Printf("Error: Failed to write points to database: %v", err.Error())
+		}
+	}
+
 	return &pb.ResultResponse{Status: pb.ResultStatus_RESULT_OK, Message: ""}, nil
 }
 

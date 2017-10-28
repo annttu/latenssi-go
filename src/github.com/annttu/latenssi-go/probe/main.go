@@ -49,28 +49,6 @@ func main() {
 	grpc.InitializeConnection(parsedConfig.Collector.Address)
 	defer grpc.CloseConnection()
 
-
-
-	/*probetypes["fping"] = func(host string) probe.Probe {
-		var p probe.Probe
-		p = &probe.Fping{
-			Command: "/usr/local/bin/fping",
-			Host: host,
-			Interval: 100,
-		}
-		return p
-	}
-
-	probetypes["fping6"] = func(host string) probe.Probe {
-		var p probe.Probe
-		p = &probe.Fping{
-			Command: "/usr/local/bin/fping6",
-			Host: host,
-			Interval: 100,
-		}
-		return p
-	}*/
-
 	var wg sync.WaitGroup
 
 	var runners []*probe.ProbeRunner = []*probe.ProbeRunner{}

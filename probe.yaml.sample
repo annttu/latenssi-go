@@ -1,0 +1,27 @@
+collector:
+   address: 127.0.0.1:50051
+
+hostname: example.com
+
+probes:
+ fping:
+   probe: "fping"
+   command: "/usr/local/bin/fping"
+
+ fping6:
+   probe: "fping"
+   command: "/usr/local/bin/fping6"
+
+
+destinations:
+  - address: 8.8.8.8
+    probe: fping
+
+  - address: 8.8.4.4
+    probe: fping
+
+  - address: a.fi
+    probe: fping
+
+  - address: a.fi
+    probe: ping6
