@@ -54,15 +54,20 @@ func main() {
 	var runners []*probe.ProbeRunner = []*probe.ProbeRunner{}
 
 	for _, destination := range parsedConfig.Destinations {
-		if _, ok := probetypes[destination.Probe]; !ok {
-			log.Printf("Skipped invalid probe type %s", destination.Probe)
-			continue
+		if len(destination.Probes) == 0 {
+			log.Printf("No probes configured for address %s", destination.Address)
 		}
-		p := probetypes[destination.Probe](destination.Address, 60)
-		runner := &probe.ProbeRunner{Probe: p}
-		go runner.Run()
-		wg.Add(1)
-		runners = append(runners, runner)
+		for _, probeType := range  destination.Probes {
+			if _, ok := probetypes[probeType]; !ok {
+				log.Printf("Skipped invalid probe type %s", probeType)
+				continue
+			}
+			p := probetypes[probeType](destination.Address, 60)
+			runner := &probe.ProbeRunner{Probe: p}
+			go runner.Run()
+			wg.Add(1)
+			runners = append(runners, runner)
+		}
 	}
 
 	wg.Wait()

@@ -2,7 +2,7 @@ package config
 
 type Destination struct {
 	Address string `yaml:"address"`
-	Probe string `yaml:"probe"`
+	Probes []string `yaml:"probes"`
 }
 
 type Collector struct {
