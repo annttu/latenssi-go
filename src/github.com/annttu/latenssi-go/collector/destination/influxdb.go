@@ -31,9 +31,7 @@ func (i *Influxdb) Connect() {
 
 }
 
-func (i *Influxdb) WritePoints(source string, host string, probe string, points []*proto.ResultRow) error {
-
-
+func (i *Influxdb) WritePoints(source string, host string, probe string, timestamp time.Time, points []*proto.ResultRow) error {
 
 	// Create a new point batch
 	bp, err := client.NewBatchPoints(client.BatchPointsConfig{
@@ -68,8 +66,7 @@ func (i *Influxdb) WritePoints(source string, host string, probe string, points 
 	// Create a point and add to batch
 	tags := map[string]string{"host": host, "source": source}
 
-
-	pt, err := client.NewPoint(probe, tags, fields, time.Now())
+	pt, err := client.NewPoint(probe, tags, fields, timestamp)
 	if err != nil {
 		log.Fatal(err)
 	}
