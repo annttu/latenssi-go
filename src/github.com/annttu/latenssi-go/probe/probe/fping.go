@@ -38,7 +38,7 @@ func (f *Fping) Parser(line string) (r *result.Result, err error) {
 
 	// Skip summary lines
 	if !f.previousLineWasTimestamp {
-		fmt.Printf("Skipping summary line %s", line)
+		fmt.Printf("Skipping summary line %s\n", line)
 		return nil, nil
 	}
 

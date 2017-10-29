@@ -62,7 +62,7 @@ func main() {
 				log.Printf("Skipped invalid probe type %s", probeType)
 				continue
 			}
-			p := probetypes[probeType](destination.Address, 60)
+			p := probetypes[probeType](destination.Address, 300)
 			runner := &probe.ProbeRunner{Probe: p}
 			go runner.Run()
 			wg.Add(1)
