@@ -6,22 +6,26 @@ hostname: example.com
 probes:
  fping:
    probe: "fping"
-   command: "/usr/local/bin/fping"
+   command: "/usr/sbin/fping"
 
  fping6:
-   probe: "fping"
-   command: "/usr/local/bin/fping6"
+   probe: "fping6"
+   command: "/usr/sbin/fping6"
 
 
 destinations:
   - address: 8.8.8.8
-    probe: fping
+    probes:
+      - fping
 
   - address: 8.8.4.4
-    probe: fping
+    probes:
+      - fping
 
   - address: a.fi
-    probe: fping
+    probes:
+      - fping
 
   - address: a.fi
-    probe: ping6
+    probes:
+      - fping6

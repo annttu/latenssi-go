@@ -57,3 +57,23 @@ arm64:
         - bin/*
         - "*.yaml.sample"
 
+arm:
+    variables:
+      GOPATH: /data/gitlab-ci/latenssi_gopath
+      GOARCH: arm
+      GOOS: linux
+    stage: build
+    script:
+      - mkdir -p $GOPATH
+      - make
+    only:
+     - master
+    tags:
+     - linux
+    artifacts:
+      expire_in: 8 week
+      name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}-arm"
+      paths:
+        - bin/*
+        - "*.yaml.sample"
+
