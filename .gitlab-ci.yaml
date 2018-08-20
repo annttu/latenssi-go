@@ -1,0 +1,62 @@
+---
+stages:
+    - build
+
+before_script:
+  - go version
+  - echo $CI_BUILD_REF
+  - echo $CI_PROJECT_DIR
+
+cache:
+    key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
+    paths:
+      - bin
+      - pkg
+      - src/golang.org
+      - src/github.com
+      - src/google.golang.org
+      - src/remod.fi/go
+      - src/gopkg.in
+
+x86-64:
+    variables:
+      GOPATH: /data/gitlab-ci/latenssi_gopath
+      GOARCH: amd64
+      GOOS: linux
+    stage: build
+    script:
+      - mkdir -p $GOPATH
+      - make
+    only:
+     - master
+    tags:
+     - linux
+    artifacts:
+      expire_in: 8 week
+      name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}-amd64"
+      paths:
+        - bin/latenssi-collector
+        - bin/latenssi-probe
+        - *.yaml
+
+arm64:
+    variables:
+      GOPATH: /data/gitlab-ci/latenssi_gopath
+      GOARCH: arm64
+      GOOS: linux
+    stage: build
+    script:
+      - mkdir -p $GOPATH
+      - make
+    only:
+     - master
+    tags:
+     - linux
+    artifacts:
+      expire_in: 8 week
+      name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}-arm64"
+      paths:
+        - bin/latenssi-collector
+        - bin/latenssi-probe
+        - *.yaml
+
