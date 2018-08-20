@@ -10,7 +10,6 @@ before_script:
 cache:
     key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
     paths:
-      - bin
       - pkg
       - src/golang.org
       - src/github.com
@@ -37,7 +36,7 @@ x86-64:
       paths:
         - bin/latenssi-collector
         - bin/latenssi-probe
-        - *.yaml
+        - "*.yaml"
 
 arm64:
     variables:
@@ -58,5 +57,5 @@ arm64:
       paths:
         - bin/latenssi-collector
         - bin/latenssi-probe
-        - *.yaml
+        - "*.yaml"
 
