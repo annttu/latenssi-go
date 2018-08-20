@@ -34,8 +34,7 @@ x86-64:
       expire_in: 8 week
       name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}-amd64"
       paths:
-        - bin/collector
-        - bin/probe
+        - bin/*
         - "*.yaml.sample"
 
 arm64:
@@ -55,7 +54,6 @@ arm64:
       expire_in: 8 week
       name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA}-arm64"
       paths:
-        - bin/collector
-        - bin/probe
+        - bin/*
         - "*.yaml.sample"
 
