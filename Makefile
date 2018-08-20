@@ -7,8 +7,7 @@ COLLECTOR_BINARY := "bin/latenssi-collector"
 
 GO_OPTS := 
 
-#all: deps build
-all: build
+all: deps build
 
 build: src/github.com/annttu/latenssi-go/proto/proto.pb.go $(PROBE_BINARY) $(COLLECTOR_BINARY)
 
