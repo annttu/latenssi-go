@@ -14,7 +14,6 @@ cache:
       - src/golang.org
       - src/github.com
       - src/google.golang.org
-      - src/remod.fi/go
       - src/gopkg.in
 
 x86-64:
