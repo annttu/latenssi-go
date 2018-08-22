@@ -7,14 +7,14 @@ before_script:
   - echo $CI_BUILD_REF
   - echo $CI_PROJECT_DIR
 
-cache:
-    key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
-    paths:
-      - pkg
-      - src/golang.org
-#      - src/github.com
-      - src/google.golang.org
-      - src/gopkg.in
+#cache:
+#    key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
+#    paths:
+#      - pkg
+#      - src/golang.org
+##      - src/github.com
+#      - src/google.golang.org
+#      - src/gopkg.in
 
 x86-64:
     variables:
