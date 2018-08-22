@@ -125,14 +125,15 @@ func init() {
 		} else {
 			command = commandInterface.(string)
 		}
-		return func(host string, interval uint64) Probe {
-			var p Probe = &Fping{
+		return func(host string, interval uint64) ProbeRunner {
+			var p CommandProbe = &Fping{
 				Name:     name,
 				Command:  command,
 				Host:     host,
 				Interval: interval,
 			}
-			return p
+			var runner = CommandProbeRunner{Probe: p}
+			return &runner
 		}
 	}
 }

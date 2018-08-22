@@ -38,8 +38,6 @@ type ResultRowInt64 struct {
 func (r *ResultRowInt64) Get() (string, interface{}) {
 	return r.Key, r.Value
 }
-func (r *ResultRowFloat64) Type() ResultType { return ResultTypeFloat }
-
 
 func (r *ResultRowInt64) String() string {
 	return fmt.Sprintf("%s: %d", r.Key, r.Value)
@@ -60,3 +58,5 @@ func (r *ResultRowFloat64) Get() (string, interface{}) {
 func (r *ResultRowFloat64) String() string {
 	return fmt.Sprintf("%s: %f", r.Key, r.Value)
 }
+
+func (r *ResultRowFloat64) Type() ResultType { return ResultTypeFloat }

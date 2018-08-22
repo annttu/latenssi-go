@@ -19,6 +19,7 @@ deps:
 	go get ${GO_OPTS} github.com/golang/protobuf/protoc-gen-go
 	go get ${GO_OPTS} gopkg.in/yaml.v2
 	go get ${GO_OPTS} github.com/influxdata/influxdb/client/v2
+	go get ${GO_OPTS} github.com/miekg/dns
 
 src/github.com/annttu/latenssi-go/proto/proto.pb.go: src/github.com/annttu/latenssi-go/proto/proto.proto
 	protoc --plugin=$(GOPATH)/bin/protoc-gen-go -I .  $< --go_out=plugins=grpc:.

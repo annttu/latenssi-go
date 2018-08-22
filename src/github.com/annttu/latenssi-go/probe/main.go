@@ -51,7 +51,7 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	var runners []*probe.ProbeRunner = []*probe.ProbeRunner{}
+	var runners []probe.ProbeRunner = []probe.ProbeRunner{}
 
 	for _, destination := range parsedConfig.Destinations {
 		if len(destination.Probes) == 0 {
@@ -62,8 +62,7 @@ func main() {
 				log.Printf("Skipped invalid probe type %s", probeType)
 				continue
 			}
-			p := probetypes[probeType](destination.Address, 300)
-			runner := &probe.ProbeRunner{Probe: p}
+			var runner probe.ProbeRunner = probetypes[probeType](destination.Address, 300)
 			go runner.Run()
 			wg.Add(1)
 			runners = append(runners, runner)

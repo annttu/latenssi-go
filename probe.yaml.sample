@@ -9,22 +9,29 @@ probes:
    command: "/usr/sbin/fping"
 
  fping6:
-   probe: "fping6"
+   probe: "fping"
    command: "/usr/sbin/fping6"
 
+ dnstest:
+   probe: "dns"
+   query: "a.fi"
+   queryType: "A"
 
 destinations:
   - address: 8.8.8.8
     probes:
       - fping
+      - dnstest
 
   - address: 8.8.4.4
     probes:
       - fping
+      - dnstest
 
   - address: a.fi
     probes:
       - fping
+      - dnstest
 
   - address: a.fi
     probes:
