@@ -12,7 +12,7 @@ cache:
     paths:
       - pkg
       - src/golang.org
-      - src/github.com
+#      - src/github.com
       - src/google.golang.org
       - src/gopkg.in
 
