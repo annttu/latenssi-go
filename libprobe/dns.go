@@ -1,10 +1,10 @@
-package probe
+package libprobe
 
 import (
-	"github.com/annttu/latenssi-go/probe/result"
 	"github.com/miekg/dns"
 	"context"
 	"time"
+	"github.com/annttu/latenssi-go/libprobe/result"
 )
 
 type DNSProbe struct {

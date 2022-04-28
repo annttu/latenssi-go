@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/annttu/latenssi-go/probe/probe"
 	"sync"
-	"github.com/annttu/latenssi-go/probe/grpc"
-	"github.com/annttu/latenssi-go/probe/config"
 	"flag"
 	"log"
 	"fmt"
+	"github.com/annttu/latenssi-go/libprobe"
+	"github.com/annttu/latenssi-go/libprobe/grpc"
+	"github.com/annttu/latenssi-go/libprobe/config"
 )
 
 var (
@@ -16,7 +16,7 @@ var (
 
 func main() {
 
-	var probetypes map[string]probe.ProbeFunction = make(map[string]probe.ProbeFunction)
+	var probetypes map[string]libprobe.ProbeFunction = make(map[string]libprobe.ProbeFunction)
 
 	flag.Parse()
 
@@ -37,7 +37,7 @@ func main() {
 			panic(fmt.Sprintf("Probe type missing from probe %s", name))
 		}
 
-		initiator, ok := probe.Initiators[probeType.(string)]
+		initiator, ok := libprobe.Initiators[probeType.(string)]
 		if !ok {
 			panic(fmt.Sprintf("Probe type %s is not supported", probetypes))
 		}
@@ -51,7 +51,7 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	var runners []probe.ProbeRunner = []probe.ProbeRunner{}
+	var runners []libprobe.ProbeRunner = []libprobe.ProbeRunner{}
 
 	for _, destination := range parsedConfig.Destinations {
 		if len(destination.Probes) == 0 {
@@ -62,7 +62,7 @@ func main() {
 				log.Printf("Skipped invalid probe type %s", probeType)
 				continue
 			}
-			var runner probe.ProbeRunner = probetypes[probeType](destination.Address, 300)
+			var runner libprobe.ProbeRunner = probetypes[probeType](destination.Address, 300)
 			go runner.Run()
 			wg.Add(1)
 			runners = append(runners, runner)

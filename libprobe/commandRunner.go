@@ -1,4 +1,4 @@
-package probe
+package libprobe
 
 
 import (
@@ -10,8 +10,8 @@ import (
 	"sync"
 	"bufio"
 	"strings"
-	"github.com/annttu/latenssi-go/probe/result"
-	"github.com/annttu/latenssi-go/probe/grpc"
+	"github.com/annttu/latenssi-go/libprobe/result"
+	"github.com/annttu/latenssi-go/libprobe/grpc"
 )
 
 

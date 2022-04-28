@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/annttu/latenssi-go/collector/grpc"
 	"flag"
-	"github.com/annttu/latenssi-go/collector/config"
 	"log"
-	"github.com/annttu/latenssi-go/collector/destination"
+	"github.com/annttu/latenssi-go/libcollector/grpc"
+	"github.com/annttu/latenssi-go/libcollector/config"
+	"github.com/annttu/latenssi-go/libcollector/destination"
 )
 
 var (

@@ -1,11 +1,11 @@
-package probe
+package libprobe
 
 import (
 	"strings"
 	"strconv"
 	"fmt"
-	"github.com/annttu/latenssi-go/probe/result"
 	"time"
+	"github.com/annttu/latenssi-go/libprobe/result"
 )
 
 

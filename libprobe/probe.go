@@ -1,4 +1,4 @@
-package probe
+package libprobe
 
 
 type ProbeInitiator func(name string, config map[string]interface{}) ProbeFunction

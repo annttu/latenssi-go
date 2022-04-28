@@ -1,3 +1,3 @@
-package probe
+package libprobe
 
 var Initiators map[string]ProbeInitiator

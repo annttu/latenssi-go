@@ -7,7 +7,7 @@ import (
 	"log"
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc"
-	"github.com/annttu/latenssi-go/collector/destination"
+	"github.com/annttu/latenssi-go/libcollector/destination"
 )
 
 const (

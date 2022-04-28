@@ -1,13 +1,13 @@
-package probe
+package libprobe
 
 import (
-	"github.com/annttu/latenssi-go/probe/grpc"
 	"time"
 	"fmt"
-	"github.com/annttu/latenssi-go/probe/result"
 	"sync"
 	"context"
 	"errors"
+	"github.com/annttu/latenssi-go/libprobe/result"
+	"github.com/annttu/latenssi-go/libprobe/grpc"
 )
 
 type FunctionProbeRunner struct {

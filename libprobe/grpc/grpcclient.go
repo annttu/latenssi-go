@@ -4,8 +4,8 @@ import (
 	"log"
 	"google.golang.org/grpc"
 	pb "github.com/annttu/latenssi-go/proto"
+	"github.com/annttu/latenssi-go/libprobe/result"
 	"golang.org/x/net/context"
-	"github.com/annttu/latenssi-go/probe/result"
 	"fmt"
 	"os"
 )
