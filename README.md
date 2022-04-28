@@ -19,7 +19,7 @@ Currently InfluxDB is only supported time series database.
 Installation
 ===========
 
-  * Install go >= 1.9
+  * Install go >= 1.17
   * Install fping
   * run make
   * Edit probe.yaml and collector.yaml
@@ -27,8 +27,8 @@ Installation
 Usage
 =====
 
-bin/probe
-bin/collector
+bin/latenssi-probe
+bin/latenssi-collector
 
 License
 =======
